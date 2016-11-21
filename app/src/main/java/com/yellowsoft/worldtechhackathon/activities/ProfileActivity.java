@@ -128,7 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new UserPostsListFragment(), "NEW");
-        adapter.addFragment(new UserPostsGridFragment(), "TOP");
+        adapter.addFragment(new UserPostsListFragment(), "TOP");
         viewPager.setAdapter(adapter);
     }
 

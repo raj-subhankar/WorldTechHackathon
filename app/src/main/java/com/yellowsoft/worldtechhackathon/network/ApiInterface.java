@@ -62,4 +62,7 @@ public interface ApiInterface {
     @POST("posts/like")
     Call<Result> like(@Field("post_id") String id,
                       @Field("userId") String user);
+
+    @GET("posts/all/{userid}")
+    Call<List<Post2>> getUserPosts(@Path("userid") String userId);
 }
