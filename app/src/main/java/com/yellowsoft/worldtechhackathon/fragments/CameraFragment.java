@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 import com.yellowsoft.worldtechhackathon.R;
+import com.yellowsoft.worldtechhackathon.activities.MainActivity;
 import com.yellowsoft.worldtechhackathon.activities.UploadActivity;
 
 import java.io.File;
@@ -83,7 +84,7 @@ public class CameraFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        ((MainActivity) getActivity()).getSupportActionBar().hide();
     }
 
     @Override
@@ -351,6 +352,8 @@ public class CameraFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
         Log.e(TAG, "onResume");
         startBackgroundThread();
         if (textureView.isAvailable()) {
