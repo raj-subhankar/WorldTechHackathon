@@ -35,4 +35,6 @@ dependencies {
 
     //Ucrop
     compile 'com.yalantis:ucrop:2.2.0'
+
+    compile 'com.google.android.gms:play-services:6.5+'
 }

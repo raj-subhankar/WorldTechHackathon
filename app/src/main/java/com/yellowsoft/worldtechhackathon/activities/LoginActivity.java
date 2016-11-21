@@ -4,7 +4,6 @@ package com.yellowsoft.worldtechhackathon.activities;
  * Created by subhankar on 11/21/2016.
  */
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.yellowsoft.worldtechhackathon.ApiClient;
-import com.yellowsoft.worldtechhackathon.ApiInterface;
+import com.yellowsoft.worldtechhackathon.network.ApiClient;
+import com.yellowsoft.worldtechhackathon.network.ApiInterface;
 import com.yellowsoft.worldtechhackathon.R;
 import com.yellowsoft.worldtechhackathon.SessionManager;
 import com.yellowsoft.worldtechhackathon.models.AuthResult;
