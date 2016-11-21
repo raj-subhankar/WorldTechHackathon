@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#007f72</color>
+    <color name="colorAccent">#ffc107</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
@@ -16,4 +16,8 @@
 
     <color name="text_like_counter">#2b5a83</color>
     <color name="album_title">#4c4c4c</color>
+
+    <color name="ucrop_color_statusbar">#007f72</color>
+    <color name="ucrop_color_toolbar">#009688</color>
+    <color name="ucrop_color_widget_active">#009688</color>
 </resources>
