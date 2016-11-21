@@ -277,7 +277,11 @@ public class UploadActivity extends AppCompatActivity implements ConnectionCallb
                                    Response<ResponseBody> response) {
                 Log.v("Upload", "success");
                 hideDialog();
-                //Feed activity
+                //Main activity
+                hideDialog();
+                Intent intent = new Intent(UploadActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
 
             @Override

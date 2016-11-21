@@ -4,6 +4,8 @@ package com.yellowsoft.worldtechhackathon.activities;
  * Created by subhankar on 11/21/2016.
  */
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +13,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.yalantis.ucrop.UCrop;
 import com.yellowsoft.worldtechhackathon.R;
+import com.yellowsoft.worldtechhackathon.fragments.CameraFragment;
+import com.yellowsoft.worldtechhackathon.fragments.PostFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        //adapter.addFragment(new CameraFragment(), "Capture");
-
+        adapter.addFragment(new CameraFragment(), "Capture");
+        adapter.addFragment(new PostFragment(), "Feed");
         viewPager.setAdapter(adapter);
     }
 
@@ -61,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == UCrop.REQUEST_CROP) {
+            final Uri resultUri = UCrop.getOutput(data);
+            Log.d("result", resultUri.toString());
+            //Upload activity
+            Intent intent = new Intent(this, UploadActivity.class);
+            intent.putExtra("imageUri", resultUri);
+            startActivity(intent);
+            finish();
+
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable cropError = UCrop.getError(data);
         }
     }
 }

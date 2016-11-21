@@ -32,13 +32,24 @@
         <activity
             android:name=".activities.CreateProfileActivity"
             android:screenOrientation="portrait"
-            android:label="Register"
+            android:label="Create Profile"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
-            android:label="Register"
+            android:label="Main"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity
+            android:name=".activities.UploadActivity"
+            android:screenOrientation="portrait"
+            android:label="Upload"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
     </application>

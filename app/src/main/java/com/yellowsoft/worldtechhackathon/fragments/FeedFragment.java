@@ -38,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PostFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class FeedFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private SessionManager session;
     ArrayList<Post2> posts = new ArrayList<Post2>();
     private RecyclerView recyclerView;
@@ -62,9 +62,9 @@ public class PostFragment extends Fragment implements GoogleApiClient.Connection
     private GoogleApiClient mGoogleApiClient;
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
-    private static final String TAG = PostFragment.class.getSimpleName();
+    private static final String TAG = FeedFragment.class.getSimpleName();
 
-    public PostFragment() {
+    public FeedFragment() {
     }
 
     public MainActivity feedActivity;
@@ -107,9 +107,9 @@ public class PostFragment extends Fragment implements GoogleApiClient.Connection
             }
         });
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(mAdapter);
 
         recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
@@ -312,16 +312,14 @@ public class PostFragment extends Fragment implements GoogleApiClient.Connection
         call.enqueue(new Callback<List<Post2>>() {
             @Override
             public void onResponse(Call<List<Post2>> call, Response<List<Post2>> response) {
+
                 if (!response.body().isEmpty()) {
-                    Log.d("Response", "Response received");
                     posts.removeAll(posts);
                     posts.addAll(response.body());
                     mAdapter = new FeedAdapter(getContext(), posts);
                     mAdapter.notifyDataSetChanged();
                     recyclerView.setAdapter(mAdapter);
 
-                } else {
-                    Log.d("Response", "Response not received");
                 }
             }
 
@@ -370,4 +368,3 @@ public class PostFragment extends Fragment implements GoogleApiClient.Connection
         });
     }
 }
-

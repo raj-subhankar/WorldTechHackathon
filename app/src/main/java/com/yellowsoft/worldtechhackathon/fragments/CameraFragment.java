@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 import com.yellowsoft.worldtechhackathon.R;
+import com.yellowsoft.worldtechhackathon.activities.UploadActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -247,6 +248,7 @@ public class CameraFragment extends Fragment {
                             .withAspectRatio(1, 1)
                             .withMaxResultSize(320, 320)
                             .start(getActivity());
+                    closeCamera();
                 }
             };
             cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
@@ -362,18 +364,6 @@ public class CameraFragment extends Fragment {
         //closeCamera();
         stopBackgroundThread();
         super.onPause();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == UCrop.REQUEST_CROP) {
-            final Uri resultUri = UCrop.getOutput(data);
-            Log.d("result", resultUri.toString());
-            //Upload activity
-
-        } else if (resultCode == UCrop.RESULT_ERROR) {
-            final Throwable cropError = UCrop.getError(data);
-        }
     }
 }
 
