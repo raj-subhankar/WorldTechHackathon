@@ -15,7 +15,9 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -32,6 +34,12 @@ public interface ApiInterface {
     @POST("users/add")
     Call<AuthResult> register(@Field("email") String email,
                               @Field("password") String password);
+
+    @Multipart
+    @PUT("users/{id}")
+    Call<AuthResult> createProfile(@Path("id") String id,
+                                   @Part("name") RequestBody name,
+                                   @Part MultipartBody.Part file);
 
     @Multipart
     @POST("posts/add")

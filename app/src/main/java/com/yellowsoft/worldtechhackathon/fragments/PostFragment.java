@@ -62,9 +62,9 @@ public class PostFragment extends Fragment implements GoogleApiClient.Connection
     private GoogleApiClient mGoogleApiClient;
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
-    private static final String TAG = NewPostFragment.class.getSimpleName();
+    private static final String TAG = PostFragment.class.getSimpleName();
 
-    public NewPostFragment() {
+    public PostFragment() {
     }
 
     public MainActivity feedActivity;

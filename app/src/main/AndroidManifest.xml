@@ -30,11 +30,16 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.CreateProfileActivity"
             android:screenOrientation="portrait"
             android:label="Register"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="Register"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
     </application>
 

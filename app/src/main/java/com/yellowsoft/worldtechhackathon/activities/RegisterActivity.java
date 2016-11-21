@@ -40,7 +40,11 @@ public class RegisterActivity extends Activity {
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
-            // User is already logged in. Take him to Camera Activity
+            // User is already logged in. Take him to Main Activity
+            Intent intent = new Intent(RegisterActivity.this,
+                    MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         etEmail = (EditText) findViewById(R.id.etEmail);
@@ -85,7 +89,7 @@ public class RegisterActivity extends Activity {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Registering you ...");
         showDialog();
 
         ApiInterface apiService =
@@ -112,6 +116,11 @@ public class RegisterActivity extends Activity {
 //                    db.addUser(name, email, uid, created_at);
 
                     // Launch CreateProfileActivity
+                    Intent intent = new Intent(RegisterActivity.this,
+                            CreateProfileActivity.class);
+                    intent.putExtra("userid", id);
+                    startActivity(intent);
+                    finish();
                 } else {
                     //Error in login. Get the error message
                     String errorMsg = result.getMessage().toString();

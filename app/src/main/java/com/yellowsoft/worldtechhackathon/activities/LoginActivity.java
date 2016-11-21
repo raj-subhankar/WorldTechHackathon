@@ -56,6 +56,9 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to CameraActivity
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         // Login button Click Event
@@ -122,7 +125,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     // TBD store the user in SQLite
 
-                    // Launch camera activity
+                    // Launch main activity
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     // Error in login. Get the error message
                     String errorMsg = result.getMessage().toString();
