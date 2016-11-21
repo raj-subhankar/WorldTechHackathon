@@ -8,7 +8,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,68 +24,57 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
-    //private static final String TAG = RegisterActivity.class.getSimpleName();
-    private Button btnLogin;
-    private Button btnLinkToRegister;
-    private EditText inputEmail;
-    private EditText inputPassword;
+public class RegisterActivity extends Activity {
+    private static final String TAG = RegisterActivity.class.getSimpleName();
+    private Button btnRegister, btnLinkToLogin;
+    private EditText etEmail, etPassword;
     private ProgressDialog pDialog;
     private SessionManager session;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-
-        btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
-
-        // Progress dialog
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
-
-        // SQLite database handler
-        //db = new SQLiteHandler(getApplicationContext());
+        setContentView(R.layout.activity_register);
 
         // Session manager
         session = new SessionManager(getApplicationContext());
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
-            // User is already logged in. Take him to CameraActivity
+            // User is already logged in. Take him to Camera Activity
         }
 
-        // Login button Click Event
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
 
+        // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+
+        // Register Button Click event
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                String email = etEmail.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
 
-                // Check for empty data in the form
                 if (!email.isEmpty() && !password.isEmpty()) {
-                    // login user
-                    checkLogin(email, password);
+                    register(email, password);
                 } else {
-                    // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
-                            "Please enter the credentials!", Toast.LENGTH_LONG)
+                            "Please enter your details!", Toast.LENGTH_LONG)
                             .show();
                 }
             }
-
         });
 
-        // Link to Register Screen
-        btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
+        // Link to Login Screen
+        btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        RegisterActivity.class);
+                        LoginActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -93,10 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * function to verify login details in mysql db
-     */
-    private void checkLogin(final String name, final String password) {
+    private void register(final String email, final String password) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -106,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<AuthResult> call = apiService.authenticate(name, password);
+        Call<AuthResult> call = apiService.register(email, password);
         call.enqueue(new Callback<AuthResult>() {
             @Override
             public void onResponse(Call<AuthResult> call, Response<AuthResult> response) {
@@ -117,15 +103,18 @@ public class LoginActivity extends AppCompatActivity {
                     // user successfully logged in
                     // Create login session
                     String id = result.getId().toString();
-                    String email = result.getEmail().toString();
-                    String name = result.getName().toString();
-                    session.setLogin(true, id, email, name);
+//                    String email = result.getEmail().toString();
+//                    session.setLogin(true, id, email);
 
-                    // TBD store the user in SQLite
+                    // Now store the user in SQLite
+//                    String token = result.getToken();
 
-                    // Launch camera activity
+                    // Inserting row in users table
+//                    db.addUser(name, email, uid, created_at);
+
+                    // Launch CreateProfileActivity
                 } else {
-                    // Error in login. Get the error message
+                    //Error in login. Get the error message
                     String errorMsg = result.getMessage().toString();
                     Toast.makeText(getApplicationContext(),
                             errorMsg, Toast.LENGTH_LONG).show();
@@ -138,6 +127,14 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * Function to store user in MySQL database will post params(tag, name,
+     * email, password) to register url
+     * */
+    private void registerUser(final String name, final String email,
+                              final String password) {
     }
 
     private void showDialog() {
