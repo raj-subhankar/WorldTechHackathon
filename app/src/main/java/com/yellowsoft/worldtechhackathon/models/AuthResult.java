@@ -16,13 +16,16 @@ public class AuthResult {
     private String id;
     @SerializedName("email")
     private String email;
+    @SerializedName("imageUrl")
+    private String imageUrl;
 
-    public AuthResult(Boolean success, String message,  String userName, String id, String email) {
+    public AuthResult(Boolean success, String message,  String userName, String id, String email, String imageUrl) {
         this.success = success;
         this.message = message;
         this.name = userName;
         this.id = id;
         this.email = email;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -63,6 +66,14 @@ public class AuthResult {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 

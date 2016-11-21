@@ -27,6 +27,7 @@ public class SessionManager {
     private static final String KEY_NAME   = "name";
     private static final String KEY_ID   = "id";
     private static final String KEY_EMAIL   = "email";
+    private static final String KEY_IMG   = "image";
 
     public SessionManager(Context context) {
         this._context = context;
@@ -34,12 +35,13 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void setLogin(boolean isLoggedIn, String id, String email, String name) {
+    public void setLogin(boolean isLoggedIn, String id, String email, String name, String image) {
 
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
         editor.putString(KEY_ID, id);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_NAME, name);
+        editor.putString(KEY_IMG, image);
 
         // commit changes
         editor.commit();
@@ -56,4 +58,6 @@ public class SessionManager {
     public String getName() { return pref.getString(KEY_NAME, null); }
 
     public String getEmail() { return pref.getString(KEY_EMAIL, null); }
+
+    public String getImageUrl() { return pref.getString(KEY_IMG, null); }
 }

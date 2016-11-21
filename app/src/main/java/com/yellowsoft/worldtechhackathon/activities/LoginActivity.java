@@ -121,7 +121,8 @@ public class LoginActivity extends AppCompatActivity {
                     String id = result.getId().toString();
                     String email = result.getEmail().toString();
                     String name = result.getName().toString();
-                    session.setLogin(true, id, email, name);
+                    String image = result.getImageUrl().toString();
+                    session.setLogin(true, id, email, name, image);
 
                     // TBD store the user in SQLite
 

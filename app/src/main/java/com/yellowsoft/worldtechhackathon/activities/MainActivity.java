@@ -15,6 +15,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.yalantis.ucrop.UCrop;
 import com.yellowsoft.worldtechhackathon.R;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new CameraFragment(), "Capture");
+//        adapter.addFragment(new CameraFragment(), "Capture");
         adapter.addFragment(new PostFragment(), "Feed");
         viewPager.setAdapter(adapter);
     }
@@ -88,6 +90,29 @@ public class MainActivity extends AppCompatActivity {
         } else if (resultCode == UCrop.RESULT_ERROR) {
             final Throwable cropError = UCrop.getError(data);
         }
+    }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miProfile:
+                // Do Activity menu item stuff here
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                break;
+        }
+
+        return false;
     }
 }
 

@@ -172,8 +172,9 @@ public class CreateProfileActivity extends Activity {
                     String name = result.getName();
                     String id = result.getId();
                     String email = result.getEmail();
-
-                    session.setLogin(true, id, email, name);
+                    String image = result.getImageUrl();
+                    Log.d("profilepic", result.getImageUrl());
+                    session.setLogin(true, id, email, name, image);
 
                     // Now store the user in SQLite
 //                    String token = result.getToken();

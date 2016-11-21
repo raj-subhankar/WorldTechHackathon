@@ -52,6 +52,12 @@
             android:label="Upload"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:label="Upload"
+            android:theme="@style/MyMaterialTheme"/>
+
     </application>
 
 </manifest>
