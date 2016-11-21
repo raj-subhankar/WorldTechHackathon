@@ -13,4 +13,7 @@
     <color name="input_register_hint">#5e6266</color>
 
     <color name="white">#ffffff</color>
+
+    <color name="text_like_counter">#2b5a83</color>
+    <color name="album_title">#4c4c4c</color>
 </resources>
