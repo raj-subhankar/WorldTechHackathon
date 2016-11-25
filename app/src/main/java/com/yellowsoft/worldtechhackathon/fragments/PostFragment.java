@@ -77,6 +77,7 @@ public class PostFragment extends Fragment implements GoogleApiClient.Connection
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Yellow");
         setHasOptionsMenu(true);
 
         // First we need to check availability of play services

@@ -27,6 +27,7 @@ import com.yellowsoft.worldtechhackathon.SessionManager;
 import com.yellowsoft.worldtechhackathon.adapters.FeedAdapter;
 import com.yellowsoft.worldtechhackathon.fragments.UserPostsGridFragment;
 import com.yellowsoft.worldtechhackathon.fragments.UserPostsListFragment;
+import com.yellowsoft.worldtechhackathon.fragments.UserPostsMapFragment;
 import com.yellowsoft.worldtechhackathon.models.Post2;
 
 import org.w3c.dom.Text;
@@ -122,13 +123,14 @@ public class ProfileActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_grid_on_white);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_list_white);
 //        tabLayout.getTabAt(2).setIcon(R.drawable.ic_place_white);
-//        tabLayout.getTabAt(2).setIcon(R.drawable.ic_label_white);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_label_white);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new UserPostsGridFragment(), "GRID");
         adapter.addFragment(new UserPostsListFragment(), "LIST");
+        adapter.addFragment(new UserPostsMapFragment(), "MAP");
         viewPager.setAdapter(adapter);
     }
 

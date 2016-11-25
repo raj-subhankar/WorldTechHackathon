@@ -84,13 +84,12 @@ public class CameraFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MainActivity) getActivity()).getSupportActionBar().hide();
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Yellow");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().hide();
         view = inflater.inflate(R.layout.fragment_camera, container, false);
 
         textureView = (TextureView) view.findViewById(R.id.texture);
@@ -105,13 +104,13 @@ public class CameraFragment extends Fragment {
             }
         });
 
-        ImageButton left = (ImageButton) view.findViewById(R.id.left);
-        left.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Feed Activity
-            }
-        });
+//        ImageButton left = (ImageButton) view.findViewById(R.id.left);
+//        left.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //Feed Activity
+//            }
+//        });
 
         return view;
     }
@@ -353,7 +352,6 @@ public class CameraFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         Log.e(TAG, "onResume");
         startBackgroundThread();
